@@ -11,24 +11,22 @@
 
     <artifactId>contais-security-browser</artifactId>
 
-    <name>contais-security-browser</name>
-    <!-- FIXME change it to the project's website -->
-    <url>http://www.example.com</url>
 
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source>1.8</maven.compiler.source>
-        <maven.compiler.target>1.8</maven.compiler.target>
-    </properties>
 
     <dependencies>
+        <!--引入imooc-security-core子模块-->
         <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.12</version>
-            <scope>test</scope>
+            <groupId>com.contais.security</groupId>
+            <artifactId>contais-security-core</artifactId>
+            <version>${contais.security.version}</version>
+        </dependency>
+        <!--引入session-->
+        <dependency>
+            <groupId>org.springframework.session</groupId>
+            <artifactId>spring-session</artifactId>
         </dependency>
     </dependencies>
+
 
 
 </project>

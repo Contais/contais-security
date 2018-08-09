@@ -11,24 +11,35 @@
 
     <artifactId>contais-security-demo</artifactId>
 
-    <name>contais-security-demo</name>
-    <!-- FIXME change it to the project's website -->
-    <url>http://www.example.com</url>
 
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source>1.8</maven.compiler.source>
-        <maven.compiler.target>1.8</maven.compiler.target>
-    </properties>
 
     <dependencies>
+        <!--引入imooc-security-browser子模块-->
         <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.12</version>
-            <scope>test</scope>
+            <groupId>com.contais.security</groupId>
+            <artifactId>contais-security-browser</artifactId>
+            <version>${contais.security.version}</version>
         </dependency>
+
     </dependencies>
 
+    <build>
+        <plugins>
+            <!--打包的插件-->
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>1.3.3.RELEASE</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+        <finalName>demo</finalName><!--打包后的jar名称-->
+    </build>
 
 </project>
