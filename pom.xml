@@ -21,6 +21,7 @@
   <!--版本变量-->
   <properties>
     <contais.security.version>1.0-SNAPSHOT</contais.security.version>
+    <contais.lombok.version>1.16.18</contais.lombok.version>
   </properties>
 
 
@@ -42,7 +43,16 @@
         <type>pom</type>
         <scope>import</scope>
       </dependency>
+
+      <dependency>
+        <groupId>org.projectlombok</groupId>
+        <artifactId>lombok</artifactId>
+        <version>${contais.lombok.version}</version>
+      </dependency>
+
     </dependencies>
+
+
   </dependencyManagement>
 
   <build>
