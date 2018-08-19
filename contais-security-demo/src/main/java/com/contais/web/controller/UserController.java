@@ -1,6 +1,7 @@
 package com.contais.web.controller;
 
 import com.contais.dto.User;
+import com.contais.exception.UserNotExistException;
 import com.fasterxml.jackson.annotation.JsonView;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
@@ -47,7 +48,6 @@ public class UserController {
         if (errors.hasErrors()){
             errors.getAllErrors().stream().forEach(error -> System.out.println(error.getDefaultMessage()));
         }
-
         System.out.println(user);
         user.setId("1");
         return user;
@@ -55,7 +55,7 @@ public class UserController {
 
     @GetMapping
     @JsonView(User.UserSimpleView.class)
-    public List<User> query(@RequestParam(name = "username", required = true, defaultValue = "contais") String nickname){
+    public List<User> query(@RequestParam(name = "username", required = true, defaultValue = "contais") String nickname) throws Exception {
 
         System.out.println(nickname);
 
@@ -69,8 +69,11 @@ public class UserController {
     @GetMapping("/{id:\\d+}")
     @JsonView(User.UserDetailView.class)
     public User getInfo(@PathVariable String id){
-        User user = new User();
-        user.setUsername("contais");
-        return user;
+
+        throw new UserNotExistException(id);
+
+//        User user = new User();
+//        user.setUsername("contais");
+//        return user;
     }
 }
