@@ -1,5 +1,6 @@
 package com.contais.dto;
 
+import com.contais.validator.MyConstraint;
 import com.fasterxml.jackson.annotation.JsonView;
 import lombok.Data;
 import lombok.Getter;
@@ -24,6 +25,7 @@ public class User {
     private String id;
 
     @JsonView(UserSimpleView.class)
+    @MyConstraint(message = "div valid annotation")
     private String username;
 
     @JsonView(UserDetailView.class)
