@@ -70,10 +70,12 @@ public class UserController {
     @JsonView(User.UserDetailView.class)
     public User getInfo(@PathVariable String id){
 
-        throw new UserNotExistException(id);
+//        throw new UserNotExistException(id);
 
-//        User user = new User();
-//        user.setUsername("contais");
-//        return user;
+        System.out.println("进入getInfo方法");
+
+        User user = new User();
+        user.setUsername("contais");
+        return user;
     }
 }
