@@ -3,6 +3,8 @@ package com.contais.web.controller;
 import com.contais.dto.User;
 import com.contais.exception.UserNotExistException;
 import com.fasterxml.jackson.annotation.JsonView;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
@@ -23,11 +25,13 @@ import java.util.List;
 public class UserController {
 
     @DeleteMapping("/{id:\\d+}")
-    public void delere(@PathVariable String id){
+    @ApiOperation("删除用户")
+    public void delere(@ApiParam("用户id") @PathVariable String id){
         System.out.println(id);
     }
 
     @PutMapping("/{id:\\d+}")
+    @ApiOperation("更新用户信息")
     public User update(@Valid @RequestBody User user, BindingResult errors){
 
         if (errors.hasErrors()){
@@ -42,7 +46,9 @@ public class UserController {
         user.setId("1");
         return user;
     }
+
     @PostMapping
+    @ApiOperation("创建用户")
     public User create(@Valid @RequestBody User user, BindingResult errors){
 
         if (errors.hasErrors()){
@@ -55,7 +61,8 @@ public class UserController {
 
     @GetMapping
     @JsonView(User.UserSimpleView.class)
-    public List<User> query(@RequestParam(name = "username", required = true, defaultValue = "contais") String nickname) throws Exception {
+    @ApiOperation("查询用户列表")
+    public List<User> query(@ApiParam("用户昵称") @RequestParam(name = "username", required = true, defaultValue = "contais") String nickname) throws Exception {
 
         System.out.println(nickname);
 
@@ -67,8 +74,9 @@ public class UserController {
     }
 
     @GetMapping("/{id:\\d+}")
+    @ApiOperation("查询用户详情")
     @JsonView(User.UserDetailView.class)
-    public User getInfo(@PathVariable String id){
+    public User getInfo(@ApiParam("用户id") @PathVariable String id){
 
 //        throw new UserNotExistException(id);
 

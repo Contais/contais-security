@@ -2,6 +2,7 @@ package com.contais.dto;
 
 import com.contais.validator.MyConstraint;
 import com.fasterxml.jackson.annotation.JsonView;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
@@ -22,17 +23,21 @@ public class User {
     public interface UserDetailView extends UserSimpleView{};
 
     @JsonView(UserSimpleView.class)
+    @ApiModelProperty("用户id")
     private String id;
 
     @JsonView(UserSimpleView.class)
     @MyConstraint(message = "div valid annotation")
+    @ApiModelProperty("用户名")
     private String username;
 
     @JsonView(UserDetailView.class)
     @NotBlank(message = "密码不能为空")
+    @ApiModelProperty("密码")
     private String password;
 
     @JsonView(UserSimpleView.class)
+    @ApiModelProperty("生日")
     private Date birthday;
 
 
